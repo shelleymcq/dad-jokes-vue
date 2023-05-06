@@ -5,6 +5,17 @@ const app = Vue.createApp({
       subtitle: "You think that was bad?",
     };
   },
+  methods: {
+    async getJoke() {
+      const resp = await fetch("https://icanhazdadjoke.com/", {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      const joke = await resp.json();
+      this.joke = joke.joke;
+    },
+  },
 });
 
 app.mount("#app");
